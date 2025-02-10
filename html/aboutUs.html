@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Hospital Tech Solutions</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            padding-top: 56px;
+            font-family: 'Arial', sans-serif;
+        }
+        .section-title {
+            margin-bottom: 40px;
+            color: #ff6f61;
+        }
+        .team-member {
+            margin-bottom: 30px;
+        }
+        .team-member img {
+            border-radius: 50%;
+            max-width: 150px;
+            margin-bottom: 15px;
+        }
+        .team-member h4 {
+            font-size: 1.25rem;
+            color: #333;
+        }
+        .team-member p {
+            color: #777;
+        }
+        .testimonial {
+            background-color: #f5f5f5;
+            padding: 40px 0;
+        }
+        .testimonial .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: #333;
+        }
+        .testimonial .author {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff6f61;
+        }
+        .footer-bg {
+            background-color: #333;
+        }
+        .footer-bg a {
+            color: #00bcd4;
+        }
+        .footer-bg a:hover {
+            color: #ff6f61;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Hospital Tech Solutions</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  active" href="../html/aboutUs.html">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/login.html">Login</a>
+                </li>
+                <li class="nav-item dropdown mx-3">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Register
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="../html/patientRegistration.html">Patient Registration</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="../html/doctorRegistration.html">Doctor Registration</a></li>
+                    </ul>
+                  </li>
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="bg-light text-center py-5">
+        <div class="container">
+            <h1 class="section-title">About Us</h1>
+            <p class="lead">We are dedicated to transforming healthcare through advanced technology solutions that streamline operations and enhance patient care.</p>
+        </div>
+    </header>
+
+    <section class="container my-5">
+        <h2 class="section-title text-center">Our Mission</h2>
+        <p>At Hospital Tech Solutions, our mission is to leverage cutting-edge technology to improve the efficiency and effectiveness of healthcare delivery. We are committed to providing innovative solutions that address the challenges faced by hospitals and healthcare providers, ensuring better patient outcomes and optimized operations.</p>
+
+        <h2 class="section-title text-center">Our Vision</h2>
+        <p>Our vision is to be the leading provider of technology solutions for the healthcare industry, known for our commitment to excellence, innovation, and customer satisfaction. We aim to empower healthcare professionals with tools that enhance their ability to deliver exceptional care, while also improving the overall patient experience.</p>
+
+        <h2 class="section-title text-center">Our Team</h2>
+        <div class="row">
+            <div class="col-md-4 team-member text-center">
+                <img src="https://via.placeholder.com/150" alt="Team Member">
+                <h4>Dr. Emily Roberts</h4>
+                <p>Chief Technology Officer</p>
+                <p>With over 20 years of experience in healthcare technology, Dr. Roberts leads our team in developing innovative solutions that drive progress in the industry.</p>
+            </div>
+            <div class="col-md-4 team-member text-center">
+                <img src="https://via.placeholder.com/150" alt="Team Member">
+                <h4>John Doe</h4>
+                <p>Lead Software Engineer</p>
+                <p>John is the mastermind behind our software solutions, bringing extensive expertise in developing user-friendly and efficient healthcare systems.</p>
+            </div>
+            <div class="col-md-4 team-member text-center">
+                <img src="https://via.placeholder.com/150" alt="Team Member">
+                <h4>Jane Smith</h4>
+                <p>Product Manager</p>
+                <p>Jane oversees the development and implementation of our products, ensuring they meet the highest standards of quality and address the needs of our clients.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial text-center">
+        <div class="container">
+            <blockquote class="quote">
+                "Hospital Tech Solutions has revolutionized our operations. Their technology is intuitive, reliable, and has significantly improved our patient care processes."
+            </blockquote>
+            <p class="author">- Dr. Mark Johnson, Hospital Administrator</p>
+        </div>
+    </section>
+
+    <footer class="footer-bg text-white text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 Hospital Tech Solutions. All rights reserved.</p>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

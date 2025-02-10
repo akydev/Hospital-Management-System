@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Hospital Tech Solutions</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            padding-top: 56px;
+            font-family: 'Arial', sans-serif;
+        }
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        .contact-info h4 {
+            color: #ff6f61;
+        }
+        .contact-info p {
+            color: #333;
+        }
+        .contact-form {
+            background-color: #f5f5f5;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .contact-form h2 {
+            margin-bottom: 20px;
+            color: #ff6f61;
+        }
+        .form-control:focus {
+            border-color: #00bcd4;
+            box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
+        }
+        .btn-primary {
+            background-color: #ff6f61;
+            border-color: #ff6f61;
+        }
+        .btn-primary:hover {
+            background-color: #ff3d4c;
+            border-color: #ff3d4c;
+        }
+        .map-section {
+            margin-top: 30px;
+        }
+        .map-section iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+        }
+        .footer-bg {
+            background-color: #333;
+        }
+        .footer-bg a {
+            color: #00bcd4;
+        }
+        .footer-bg a:hover {
+            color: #ff6f61;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Hospital Tech Solutions</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/aboutUs.html">About Us</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="../html/contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/login.html">Login</a>
+                </li>
+                <li class="nav-item dropdown mx-3">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Register
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="../html/patientRegistration.html">Patient Registration</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="../html/doctorRegistration.html">Doctor Registration</a></li>
+                    </ul>
+                  </li>
+                  <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                  </form>
+            </ul>
+        </div>
+    </nav>
+
+
+    <header class="bg-light text-center py-5">
+        <div class="container">
+            <h1 class="section-title">Contact Us</h1>
+            <p class="lead">We'd love to hear from you. Reach out to us with any questions, comments, or feedback you may have.</p>
+        </div>
+    </header>
+
+    <section class="container my-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-form">
+                    <h2>Get in Touch</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="contact-info">
+                    <h4>Contact Information</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 HealthTech Drive, Suite 100, Tech City, TX 75001</p>
+                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <p><i class="fas fa-envelope"></i> info@hospitaltechsolutions.com</p>
+                </div>
+                <div class="map-section">
+                    <h4>Find Us</h4>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.294451949449!2d-97.73280368465368!3d32.783060580845784!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c3db29d7e6b1f%3A0xe946d7ea6f0fc589!2s123%20HealthTech%20Drive%2C%20Tech%20City%2C%20TX%2075001!5e0!3m2!1sen!2sus!4v1609474437010!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-bg text-white text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 Hospital Tech Solutions. All rights reserved.</p>
+            <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
