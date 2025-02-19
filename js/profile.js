@@ -52,7 +52,8 @@ function loadProfile() {
 
 function attachFormSubmitListener() {
   const profileForm = document.getElementById("profileForm");
-  if (!profileForm) {
+  // console.log(profileForm);
+  if (profileForm) {
     profileForm.addEventListener("submit", handleSubmit);
   }
 }

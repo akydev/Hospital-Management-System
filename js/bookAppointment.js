@@ -1,10 +1,6 @@
 import { checkAuth } from "./storeToken.js";
-import {
-  loadComponents,
-  onlineApiUrl,
-  SpecialityList,
-} from "./commonFunction.js";
-import { showErrorToast, shorSuccessToast } from "./toastifyMessage.js";
+import { loadComponents, onlineApiUrl } from "./commonFunction.js";
+// import { showErrorToast, shorSuccessToast } from "./toastifyMessage.js";
 
 let currentStep = 0;
 let selectedSpecialityId = null;
@@ -25,18 +21,15 @@ function SpecialityList() {
   fetch(`${onlineApiUrl}/speciality`)
     .then((res) => res.json())
     .then((data) => {
-      const options = data.specialites.map((val) => {
+      const options = data.specialities.map((val) => {
         return `
-             <li data-speciality-id="${val._id}">
-            <img
-              src="../img/speciality-icon.jpeg"
-              alt="speciality"
-            />
-            <h2>
-              ${val.title}
-            </h2>
-          </li>
-            `;
+                  <div class="card" data-speciality-id="${val._id}" style="width: 18rem;">
+                  <img  src="../image/speciality-image.png" class="card-img-top" alt="image"/>
+                  <div class="card-body">
+                  <h5 class="card-title">${val.title}</h5>
+                  </div>
+                  </div>
+        `;
       });
       document.getElementById("speciality-list").innerHTML = options.join(" ");
 
@@ -51,7 +44,7 @@ function SpecialityList() {
       });
     })
     .catch((err) => console.log(err));
-};
+}
 
 function DoctorList(specialityId) {
   const apiUrl = specialityId
@@ -62,32 +55,14 @@ function DoctorList(specialityId) {
     .then((res) => res.json())
     .then((data) => {
       const options = data.doctors.map((val) => {
-        return `
-                 <div>
-              <img
-                src="../img/doctor1.png"
-                loading="lazy"
-              />
-              <div>
-                <div>
-                  <h5>
-                    ${val.firstName + " " + val.lastName}
-                  </h5>
-                  <p>
-                    ${val.specializationId?.title}
-                  </p>
-                </div>
-                <div>
-                  <button
-                    type="button"
-                    data-doctor-id="${val._id}"
-                  >
-                    Book Appointment
-                  </button>
-                </div>
-              </div>
-          </div>
-            `;
+        return `<div class="card" style="width: 18rem;">
+  <img src="../image/bgImage.jpg" class="card-img-top" alt="profile-image">
+  <div class="card-body">
+    <h5 class="card-title">${val.firstName + " " + val.lastName}</h5>
+    <p class="card-text">${val.specializationId?.title}</p>
+    <button data-doctor-id="${val._id}" type="button">Book Appoinment</button>
+  </div>
+</div>`;
       });
       document.getElementById("doctors-list").innerHTML = options.join(" ");
 
@@ -106,7 +81,7 @@ function DoctorList(specialityId) {
       });
     })
     .catch((err) => console.log(err));
-};
+}
 
 function SlotList(doctorId) {
   fetch(`${onlineApiUrl}/slot?doctor=${doctorId}`)
@@ -128,28 +103,28 @@ function SlotList(doctorId) {
       document.getElementById("slots-list").innerHTML = options.join(" ");
     })
     .catch((err) => console.log(err));
-};
+}
 
 function showStep(step) {
-    currentStep = step;
-    steps.forEach((step, index) => {
-      step.classList.toggle("hidden", index !== currentStep);
-    });
-  
-    prevBtn.disabled = currentStep === 0;
-  }
-  
-  specialityBtn.addEventListener("click", () => {
-    showStep(0);
+  currentStep = step;
+  steps.forEach((step, index) => {
+    step.classList.toggle("hidden", index !== currentStep);
   });
-  
-  doctorsBtn.addEventListener("click", () => {
-    DoctorList();
-    showStep(1);
-  });
-  
-  prevBtn.addEventListener("click", () => {
-    if (currentStep > 0) {
-      showStep(currentStep - 1);
-    }
-  });
+
+  prevBtn.disabled = currentStep === 0;
+}
+
+// specialityBtn.addEventListener("click", () => {
+//   showStep(0);
+// });
+
+// doctorsBtn.addEventListener("click", () => {
+//   DoctorList();
+//   showStep(1);
+// });
+
+// prevBtn.addEventListener("click", () => {
+//   if (currentStep > 0) {
+//     showStep(currentStep - 1);
+//   }
+// });

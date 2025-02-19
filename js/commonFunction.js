@@ -86,8 +86,7 @@ export function loadComponents() {
     .then((data) => {
       const headerContainer = document.getElementById("header-container");
       headerContainer.innerHTML = data;
-
-      const logoutBtn = headerContainer.querySelector("button");
+      const logoutBtn = headerContainer.querySelectorAll("button")[1];
       logoutBtn.addEventListener("click", () => {
         logout();
       });
