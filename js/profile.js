@@ -70,7 +70,7 @@ function fetchProfileData(role, token) {
 }
 
 const roleFields = {
-  patient: ["firstName", "lastName", "email", "password", "phone"],
+  patient: ["firstName", "lastName", "email", "password", "phone", "dob"],
   doctor: [
     "firstName",
     "lastName",
@@ -88,6 +88,11 @@ function populateForm(role, data) {
     const inputElement = document.querySelector(`input[name = "${field}"]`);
     if (inputElement) {
       inputElement.value = data[field] || "";
+      if (field === "dob" && data.dob) {
+        // Extract the date part only if the field is 'dob'
+        inputElement.value = data.dob.split("T")[0] || "";
+        // console.log(data.dob);
+      }
     }
   });
 
@@ -108,7 +113,9 @@ function populateForm(role, data) {
 async function handleSubmit(e) {
   e.preventDefault();
   const role = localStorage.getItem("role");
-  const id = localStorage.getItem("id");
+  // const id = localStorage.getItem("id");
+  const token = localStorage.getItem("token");
+
   const fields = roleFields[role] || [];
   const formData = {};
   console.log(formData);
@@ -129,10 +136,14 @@ async function handleSubmit(e) {
     ).value;
   });
   try {
-    const response = await fetch(`${onlineApiUrl}/accounts/update/${id}`, {
+    const response = await fetch(`${onlineApiUrl}/accounts/update`, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
+      // headers: {
+      //   Authorization: `Bearer ${token}`,
+      // },
       method: "PUT",
       body: JSON.stringify(formData),
     });
@@ -147,6 +158,5 @@ async function handleSubmit(e) {
   } catch (err) {
     showErrorToast("Error updating profile");
   }
-
   return false;
 }

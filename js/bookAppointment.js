@@ -29,16 +29,14 @@ function SpecialityList() {
     .then((res) => res.json())
     .then((data) => {
       const options = data.specialities.map((val) => {
-        return `
-        <div data-speciality-id="${val._id}" class="col mb-4">
+        return `<div data-speciality-id="${val._id}" class="col mb-4">
                             <div class="card h-auto d-flex flex-column justify-content-center align-items-center">
                                 <img src="../image/speciality-image.png" class="p-3 w-25" alt="image">
                                 <div class="card-body">
-                                    <h6 class="card-title">${val.title}</h6>
-                                    
+                                    <h6 class="card-title">${val.title}</h6>          
                                 </div>
                             </div>
-                        </div> `;
+                        </div>`;
       });
       document.getElementById("speciality-list").innerHTML = options.join(" ");
 
@@ -56,11 +54,15 @@ function SpecialityList() {
 }
 
 function DoctorList(specialityId) {
+  const token = localStorage.getItem("token");
+
   const apiUrl = specialityId
     ? `${onlineApiUrl}/doctors?specializationId=${specialityId}`
     : `${onlineApiUrl}/doctors`;
 
-  fetch(apiUrl)
+  fetch(apiUrl, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
     .then((res) => res.json())
     .then((data) => {
       const options = data.doctors.map((val) => {
@@ -103,26 +105,105 @@ function DoctorList(specialityId) {
 }
 
 function SlotList(doctorId) {
-  fetch(`${onlineApiUrl}/slots?doctorId=${doctorId}`)
+  const token = localStorage.getItem("token");
+
+  fetch(`${onlineApiUrl}/slots?doctorId=${doctorId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
-      const options = data.slots.map(
-        (val) => `
-            <div>
-                <h5>
-                ${new Date(val.date).toLocaleDateString()}
-                </h5>
-                <h5>
-                ${val.time}
-              </h5>
-            </div>`
-      );
+      const options = data.slots.map((val) => {
+        const isBooked = !val.isAvailable;
+        const slotClasses = isBooked
+          ? "bg-gray-300 cursor-not-allowed opacity-50"
+          : "bg-white pointer-event hover:shadow-sky-400";
+        return `
+        <div  class="card pointer-event ${slotClasses}"  style="width: 18rem;" data-slot-id="${
+          val._id
+        }" ${isBooked ? "disabled" : ""}>
+  <div class="card-body">
+    <h5 class="card-title"> ${new Date(val.date).toLocaleDateString()}</h5>
+    <p class="card-text"> ${val.time}</p>
+  </div>
+</div>  `;
+      });
 
       document.getElementById("slots-list").innerHTML = options.join(" ");
+      // Add event listeners to each available slot
+      document
+        .querySelectorAll("[data-slot-id]:not([disabled])")
+        .forEach((item) => {
+          item.addEventListener("click", (e) => {
+            e.preventDefault();
+            selectedSlotId = item.dataset.slotId;
+            showStep(3);
+            PatientList();
+          });
+        });
     })
     .catch((err) => console.log(err));
 }
+function PatientList() {
+  const token = localStorage.getItem("token");
+  const searchInput = document.getElementById("search-input");
+  //Listen for input in the search field.
+  searchInput.addEventListener("input", (e) => {
+    const query = e.target.value;
+    if (query.length > 0) {
+      fetch(`${onlineApiUrl}/patients/search?name=${query}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.patients.length === 0) {
+            document.getElementById(
+              "patients-list"
+            ).innerHTML = `<div>No Patients Found.</div>`;
+            return;
+          }
+          const options = data.patients.map((patient) => {
+            return `<div
+            class="patient-item d-flex justify-content-between p-3 pointer-event"
+            data-patient-id="${patient._id}">
+              <h5 class="">
+                ${patient.firstName + " " + patient.lastName}
+              </h5>
+              <p class="">
+                ${patient.patientID}
+              </p>
+          </div>
+        `;
+          });
 
+          document.getElementById("patients-list").innerHTML =
+            options.join(" ");
+
+          // Add event listeners to each patient item
+          document.querySelectorAll("[data-patient-id]").forEach((item) => {
+            item.addEventListener("click", (e) => {
+              e.preventDefault();
+
+              // Remove 'selected' class from previously selected patient
+              document.querySelectorAll(".patient-item").forEach((el) => {
+                el.classList.remove("border");
+              });
+
+              // Add 'selected' class to the clicked item
+              item.classList.add("border");
+              selectedPatientId = item.dataset.patientId;
+            });
+          });
+        })
+        .catch((err) => console.log(err));
+    } else {
+      document.getElementById("patients-list").innerHTML = "";
+    }
+  });
+}
 function showStep(step) {
   currentStep = step;
   steps.forEach((step, index) => {
@@ -150,6 +231,9 @@ prevBtn.addEventListener("click", () => {
 // handleSubmit
 async function handleSubmit(e) {
   e.preventDefault();
+
+  const token = localStorage.getItem("token");
+
   // Validate all required fields
   if (!selectedSpecialityId) {
     showErrorToast("Speciality is required.");
@@ -179,6 +263,7 @@ async function handleSubmit(e) {
     const response = await fetch(`${onlineApiUrl}/appointments`, {
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       method: "POST",
       body: JSON.stringify(appointmentData),

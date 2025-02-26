@@ -9,8 +9,6 @@ import {
   onlineApiUrl,
 } from "./commonFunction.js";
 
-import { checkAuthRoute } from "./storeToken.js";
-
 //Import Toastify.
 import { showErrorToast, showSuccessToast } from "./toastifyMessage.js";
 
@@ -93,7 +91,7 @@ function checkValidation(name, value) {
       console.log("Invalid input name.");
   }
   return "";
-};
+}
 
 //Create validate current setp function.
 function validateCurrentStep() {
@@ -122,7 +120,7 @@ function validateCurrentStep() {
     });
   });
   return allValid;
-};
+}
 
 //Create next button function.
 function nextStep() {
@@ -134,7 +132,7 @@ function nextStep() {
       formSteps[currentStep].classList.remove("d-none");
     }
   }
-};
+}
 
 //Create previous button function.
 function prevStep() {
@@ -143,7 +141,7 @@ function prevStep() {
     currentStep--;
     formSteps[currentStep].classList.remove("d-none");
   }
-};
+}
 
 //Create a handle submit function.
 async function handleSubmit(e) {
@@ -171,7 +169,7 @@ async function handleSubmit(e) {
     }
   });
 
-  try{
+  try {
     const response = await fetch(`${onlineApiUrl}/patients`, {
       headers: {
         "Content-Type": "application/json",
@@ -181,19 +179,19 @@ async function handleSubmit(e) {
     });
 
     const data = await response.json();
-    if(!response.ok){
+    if (!response.ok) {
       showErrorToast(data.msg);
       return;
     }
-    if(response.ok){
+    if (response.ok) {
       document.getElementById("registrationForm").reset();
       showSuccessToast(data.msg);
-      setTimeout(()=>{
+      setTimeout(() => {
         window.location.href = "/html/login.html";
-      },3000)
+      }, 3000);
     }
-  } catch(err){
+  } catch (err) {
     showErrorToast("Failed to fetch data.");
   }
   return false;
-};
+}
