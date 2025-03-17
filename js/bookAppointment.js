@@ -29,7 +29,7 @@ function SpecialityList() {
     .then((res) => res.json())
     .then((data) => {
       const options = data.specialities.map((val) => {
-        return `<div data-speciality-id="${val._id}" class="col mb-4">
+        return `<div data-speciality-id="${val._id}" class="col">
                             <div class="card h-auto d-flex flex-column justify-content-center align-items-center">
                                 <img src="../image/speciality-image.png" class="p-3 w-25" alt="image">
                                 <div class="card-body">
@@ -67,8 +67,8 @@ function DoctorList(specialityId) {
     .then((data) => {
       const options = data.doctors.map((val) => {
         return `
-        <div data-speciality-id="${val._id}" class="col mb-4">
-                            <div class="card h-auto d-flex flex-column justify-content-center align-items-center">
+        <div data-speciality-id="${val._id}" class="col">
+                            <div class="card pb-3 h-auto d-flex flex-column justify-content-center align-items-center">
                                 <img src="../image/speciality-image.png" class="p-3 w-25" alt="image">
                                 <div class="card-body">
                                     <h6 class="card-title">${
@@ -80,7 +80,7 @@ function DoctorList(specialityId) {
                                 </div>
                                 <button data-doctor-id="${
                                   val._id
-                                }" type="button">Book Appoinment</button>
+                                }" class="btn btn-outline-primary" type="button">Book Appoinment</button>
                             </div>
                         </div>`;
       });
@@ -120,7 +120,7 @@ function SlotList(doctorId) {
           ? "bg-gray-300 cursor-not-allowed opacity-50"
           : "bg-white pointer-event hover:shadow-sky-400";
         return `
-        <div  class="card pointer-event ${slotClasses}"  style="width: 18rem;" data-slot-id="${
+        <div  class="col card pointer-event ${slotClasses}" data-slot-id="${
           val._id
         }" ${isBooked ? "disabled" : ""}>
   <div class="card-body">
