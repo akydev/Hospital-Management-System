@@ -74,9 +74,12 @@ function DoctorList(specialityId) {
                                     <h6 class="card-title">${
                                       val.firstName + " " + val.lastName
                                     }</h6>
-                                    <p class="card-text">${
-                                      val.specializationId?.title
-                                    }</p>
+                                    ${val.specializationId
+                                      .map((v) => {
+                                        return `<p>${v.title}</p>`;
+                                      })
+                                      .join("")}
+                                    
                                 </div>
                                 <button data-doctor-id="${
                                   val._id
