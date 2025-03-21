@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //Create check validation function.
 
 function checkValidation(name, value) {
-  console.log(name, value);
+  // console.log(name, value);
   if (!value) {
     return `Please enter ${name.replace(/([A-Z])/g, " $1").toLowerCase()}`;
   }
@@ -153,8 +153,8 @@ async function handleSubmit(e) {
   }
 
   const formData = new FormData(document.getElementById("registrationForm"));
+  // console.log(formData)
   const formObject = {};
-
   formData.forEach((value, key) => {
     if (key !== "confirmPassword") {
       //Check if the key is part of the address and nest it accordingly.
@@ -168,6 +168,7 @@ async function handleSubmit(e) {
       }
     }
   });
+  // console.log(formObject);
 
   try {
     const response = await fetch(`${onlineApiUrl}/patients`, {
